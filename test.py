@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 from server import SERVR_HOST, SERVER_PORT, WEBSOCKET_ENDPOINT
 from unittest import TestCase
-import httplib
-import subprocess
-import time
+import httplib, subprocess, time
+
 
 class TestClient(TestCase):
     def setUp(self):

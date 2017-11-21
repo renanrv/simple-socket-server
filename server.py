@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-
-import socket, threading, time
-import re
 from base64 import b64encode
 from hashlib import sha1
+import re, socket, threading, time
+
 
 SERVER_HOST_PROTOCOL = "http"
 SERVR_HOST = "localhost"
@@ -13,6 +12,7 @@ GUID = "398YTWA5-U832-85LO-72GZ-K2PM0FV64N80"
 
 
 def get_response_general(is_websocket=False, is_method_not_allowed=False, is_bad_request=False):
+    """Return a string with proper response general data."""
     if is_bad_request:
         response_proto = 'HTTP/1.1'
         response_status = '400'
@@ -36,6 +36,7 @@ def get_response_general(is_websocket=False, is_method_not_allowed=False, is_bad
         
 
 def get_response_headers(is_websocket=False, body="", key=None, is_method_not_allowed=False, is_bad_request=False):
+    """Return a string with proper response headers."""
     if is_bad_request:
         response_headers = {
             'Content-Type': 'application/json; encoding=utf8',
@@ -72,6 +73,7 @@ def get_response_headers(is_websocket=False, body="", key=None, is_method_not_al
 
 
 def handle(s):
+    """Handle socket execution."""
     text = s.recv(1024)
 
     if "GET" not in text:
